@@ -14,7 +14,7 @@ int main()
           // it will be increase of the time complexity.
           // And every single edge connect with two nodes. Like  1 is connected with 3 and 3 with connected with 1.
           // So Time/Space Complexity is O(E * 2) = O(E) = wost case O(n^2);
-          adj_list[0].push_back ({1, 2}); // un-weighted
+          adj_list[0].push_back ({1, 2}); // weighted
           adj_list[1].push_back({2, 4});
           adj_list[3].push_back({2,8});
           adj_list[3].push_back({1, 7});
