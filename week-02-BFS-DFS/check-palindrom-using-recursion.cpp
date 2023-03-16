@@ -3,7 +3,7 @@ using namespace std;
 
 bool is_palindrome(string str)
 {
-          //base case
+          // base case
           if(str == "" || str.size() == 1)
                     return true;
 
@@ -16,7 +16,6 @@ bool is_palindrome(string str)
 
 int main()
 {
-
           string str;
           cin>>str;
           if(is_palindrome(str)) cout<<"Palindrome"<<endl;

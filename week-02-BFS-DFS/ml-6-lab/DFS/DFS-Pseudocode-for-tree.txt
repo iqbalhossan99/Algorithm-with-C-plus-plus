@@ -1,0 +1,20 @@
+// tree
+
+void dfs( int node) //binary tree
+{
+	cout<<node<<endl;
+
+	// Base case
+	if node does not have any child:
+		return;
+	
+	// general case
+
+	//binary tree
+	dfs(node.left_child);
+	dfs(node.right_child);
+
+	// normal tree
+	for all childs of node:
+		dfs(child);
+}
