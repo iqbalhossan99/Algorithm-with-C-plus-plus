@@ -61,6 +61,13 @@ list of adj nodes ->
 1 5
 2 4
 5 4
+
+o/p = 0
+1
+5
+4
+2
+3
 */
 int main()
 {
