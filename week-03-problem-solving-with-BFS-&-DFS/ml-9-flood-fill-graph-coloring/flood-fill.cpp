@@ -2,10 +2,26 @@
 
 5 8
 ########
-#.A#...#
-#.##.#B#
-#......#
+#..#...#
+####.#.#
+#..##...#
 ########
+
+6 8
+########
+#..#...#
+####.#.#
+#..##...#
+.##.#..#
+########
+
+output -> 3
+
+while there exists an empty cell
+          - find an empty unvisited cell
+          - run bfs() from that cell
+
+
 
 Output -> 9
 # -> -1
@@ -41,7 +57,6 @@ using namespace std;
 const int n = 2002;
 
 int maze[n][n], visited[n][n];
-int level[n][n];
 int rows, cols;
 
 int dx[] = {0, 0, -1, 1};
@@ -71,7 +86,6 @@ void bfs(pair<int, int>src)
 {
     queue<pair<int, int>>q;
     visited[src.first][src.second] = 1;
-    level[src.first][src.second] = 0;
 
     q.push(src);
 
@@ -92,14 +106,25 @@ void bfs(pair<int, int>src)
             if(is_inside(adj_node) && is_safe(adj_node) && visited[new_x][new_y] == 0)
             {
                 visited[new_x][new_y]  = 1;
-                level[new_x][new_y] = level[x][y] + 1;
 
                 q.push(adj_node);
             }
-
-
         }
     }
+}
+
+pair<int, int>find_unvisited()
+{
+          for(int i = 0; i<rows; i++)
+          {
+                    for(int j = 0; j < cols; j++)
+                    {
+                              if(visited[i][j] == 0 && maze[i][j] == 0){
+                                        return {i, j};
+                              }
+                    }
+          }
+          return {-1, -1};
 }
 
 int main()
@@ -109,15 +134,7 @@ int main()
 
     pair<int, int>src, dst;
 
-    for(int i = 0 ; i <rows ; i++)
-    {
-        for(int j = 0 ; j < rows ; j++)
-        {
-            level[i][j] = -1;
-        }
-    }
-
-
+    // O(n^2)
     for(int i = 0; i <rows; i++)
     {
         string input;
@@ -128,20 +145,12 @@ int main()
             {
                 maze[i][j] = -1;
             }
-            else if(input[j] == 'A')
-            {
-                src = {i, j};
-            }
-            else if(input[j] == 'B')
-            {
-                dst = {i, j};
-            }
         }
     }
 
-//    for(int i = 0; i < n ; i++)
+//    for(int i = 0; i < rows ; i++)
 //    {
-//        for(int j = 0 ; j < m ; j++)
+//        for(int j = 0 ; j < cols ; j++)
 //        {
 //            cout<<maze[i][j]<<"\t";
 //        }
@@ -149,15 +158,20 @@ int main()
 //    }
 //    cout<<endl;
 
-    bfs(src);
+int rooms = 0;
 
-    if(level[dst.first][dst.second] == -1)
-        cout<<"NO"<<endl;
-    else
-    {
-        cout<<"YES"<<endl;
-        cout<<level[dst.first][dst.second]<<endl;
-    }
+ while(true){
+                    pair<int, int>unvisited_pos = find_unvisited();
+                    if(unvisited_pos == pair<int, int>(-1, -1))
+                    {
+                              break;
+                    }
+                    bfs(unvisited_pos);
+                    rooms++;
+
+ }
+
+ cout<<rooms;
 
     return 0;
 }
