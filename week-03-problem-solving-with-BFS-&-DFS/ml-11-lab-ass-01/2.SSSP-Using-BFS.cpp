@@ -9,8 +9,6 @@ int main()
           int nodes, edges;
           cin>>nodes>>edges;
 
-
-
           int u, v;
           for(int i=0; i<edges; i++)
           {
@@ -26,9 +24,6 @@ int main()
 
                     cout<<endl;
           }
-
-
-
 
 
 
