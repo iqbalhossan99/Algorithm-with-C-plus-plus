@@ -15,6 +15,26 @@ u -----> v
   -----> x
     a
 u ->  (v, w), (x, a)
+
+
+9 15
+e g 5
+e c 9
+g f 1
+e b 20
+b f 13
+b c 7
+a b 2
+a c 1
+b h 15
+b j 6
+a j 5
+a i 18
+h i 7
+i j 6
+f h 21
+
+
 */
 
 void dijkstra(int src) {
