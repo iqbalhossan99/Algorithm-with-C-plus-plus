@@ -1,30 +1,45 @@
 // input -> a weighted graph and a source
-// output -> distance of all nodes from the source
+// ouput -> distance of all nodes from the source
 
 /*
-	u -> v
-	
-	if d[u] + c[u,v] < d[v]
-	d[v] = d[u] + c(u,v)
+u -> v
 
+if d[u] + c(u, v) < d[v]:
+    d[v] = d[u] + c(u, v)
 
 */
 
 
-// Time complexity = O(n) + O(n^2) + O(m) = O(n^2) + O(n^2) = O(n^2) //O(m) == O(n^2) 
-// Space Complexity = O(n) + O(n) + O(1) = O(n)
+// space complexity -> O(m)
+// time complexity ===> O(m log n)
 
-- Create a distance array "d" // t- O(n) s- O(n)
-- initialize all values of "d" to infinity
-- d[src] = 0;
-- create a visited array and mark all nodes as unvisited // t- O(n) s- O(n)
+- create a distance array "d"  
+- initialize all values of "d" to infinity  -> O(n)
+- d[src] = 0
+- create a visited array and mark all nodes as unvisited -> O(n)
+- take an empty reverse priority_queue "pq"
+- pq.push({0, src})
 
-// O(n^2) nested loop here
-- for i=0  to n-1: // t- O(n) s- O(n)
-	- pick the "unvisited" node with minimum d[node] // t- O(n)
-	- visited[node] = 1; O(1)
-	- for all adj_node of node: // t- O(E) or O(m)
-		- if d[node] + c(node, adj_node) < d[adj_node]:
-			- d[v] = d[u] + c(u,v)                                 
+- while the priority_queue is not empty: -> O(E)
+    - head_distance, head = pq.front() 
+    - pq.pop() -> O(log E)
+    - if visited[head] == 1: ignore
+    - visited[head] = 1
+    - for all adj_node of head: -> O(E)
+        - if d[head] + c(head, adj_node) < d[adj_node]:
+            - d[adj_node] = d[head] + c(head, adj_node)
+            - pq.push({ d[adj_node], adj_node }); -> O(log E)
 
-- output array "d";
+- ouput array "d" 
+
+ 
+ O(n) + O(E log E) + O(E log E)
+ -> O(|E| log |E|) 
+ -> O(|E| log |V^2|)
+ -> O(2|E| log |V|)
+ -> O(|E| log |V|)   [base 2]
+
+
+
+
+opological sorting is a technique used in graph theory to order the vertices of a directed acyclic graph (DAG) in a linear way such that for every directed edge from vertex u to vertex v, u comes before v in the ordering. In other words, it arranges the vertices in a way that no vertex comes before the vertices it depends upon.
