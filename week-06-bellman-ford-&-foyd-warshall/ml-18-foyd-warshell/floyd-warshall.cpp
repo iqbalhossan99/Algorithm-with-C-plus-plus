@@ -2,9 +2,21 @@
 using namespace std;
 const int sz = 1e3 + 3;
 const long long inf = 1e18;
-int adj_metrix[sz][sz];
 long long d[sz][sz];
 
+/*
+
+4 6
+4 1 20
+4 3 8
+3 2 5
+2 3 2
+2 1 2
+1 2 3
+
+
+
+*/
 
 int main() {
 

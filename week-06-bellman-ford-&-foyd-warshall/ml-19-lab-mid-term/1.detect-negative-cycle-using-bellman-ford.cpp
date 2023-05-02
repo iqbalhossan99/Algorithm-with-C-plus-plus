@@ -5,7 +5,6 @@ const int N = 1e5 + 5;
 const int INF  = 1e9;
 
 vector<pair<int, int>>adj_list[N];
-vector<int>parent[N];
 
 int d[N];
 
@@ -47,7 +46,6 @@ int main()
     d[src] = 0;
 
     bool negative_cycle = false;
-    int last_updated_node = -1;
 
     for(int i = 1 ; i <= n ; i ++)
     {
