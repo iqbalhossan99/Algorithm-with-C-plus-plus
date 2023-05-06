@@ -49,6 +49,7 @@ int subset_sum(int n, int target)
         dp[n][target] = ans1;
         return ans1;
     }
+
     int ans2 = subset_sum(n-1, target - nums[n]);
     int ans = ans1 or ans2;
 
